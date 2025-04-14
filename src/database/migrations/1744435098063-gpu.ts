@@ -3,10 +3,10 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class Gpu1744435098063 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
+
 
         new Table({
-            name: "processors",
+            name: "gpus",
             columns: [
                 {
                     name: "id",

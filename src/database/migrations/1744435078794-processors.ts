@@ -3,6 +3,7 @@ import { MigrationInterface, QueryRunner , Table} from "typeorm";
 export class Processors1744435078794 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+
         new Table({
             name: "processors",
             columns: [
@@ -10,15 +11,6 @@ export class Processors1744435078794 implements MigrationInterface {
                     name: "id",
                     type: "uuid",
                     isPrimary: true,
-                }
-                ,
-                {
-                    name: "core",
-                    type: "varchar",
-                },
-                {
-                    name: "threads",
-                    type: "varchar",
                 },
                 {
                     name: "name",
@@ -26,7 +18,20 @@ export class Processors1744435078794 implements MigrationInterface {
                     isNullable: false,
                 },
                 {
-                    name: "launch_date",
+                    name: "cores",
+                    type: "varchar",
+                },
+                {
+                    name: "clock",
+                    type: "varchar",
+                },
+                {
+                    name: "tdp",
+                    type: "varchar",
+                    isNullable: false,
+                },
+                {
+                    name: "release_date",
                     type: "varchar",
                     isNullable: false,
                 },

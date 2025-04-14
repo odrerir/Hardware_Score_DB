@@ -3,7 +3,6 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class Users1744434743034 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-        await queryRunner.query(`CREATE EXTENSION IF NOT EXISTS "uuid-ossp"`);
 
         await queryRunner.createTable(
             new Table({
@@ -29,6 +28,16 @@ export class Users1744434743034 implements MigrationInterface {
                         name: "password",
                         type: "varchar",
                         isNullable: false,
+                    },
+                    {
+                        name: "created_at",
+                        type: "timestamp",
+                        default: "now()",
+                    },
+                    {
+                        name: "updated_at",
+                        type: "timestamp",
+                        default: "now()",
                     },
                 ]
             })

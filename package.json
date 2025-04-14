@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "ts-node-dev --transpile-only src/service.ts",
-    "typeorm": "ts-node ./node_modules/.bin/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
   },
   "author": "",
   "license": "MIT",

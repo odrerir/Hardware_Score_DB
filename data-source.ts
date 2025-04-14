@@ -7,14 +7,8 @@ export const AppDataSource = new DataSource({
   port: 5432,
   username: "postgres",
   password: "Caua2003",
-  database: "postgres",
+  database: "Hardware",
   schema: "public",
-  synchronize: false,         // Não sincroniza as entidades automaticamente
-  logging: true,              // Habilita o log das queries SQL
-  entities: [
-    "src/entities/**/*.ts",
-  ],
-  migrations: [
-    "src/database/migrations/**/*.ts"
-  ]
+  entities: ["./src/entities/**/*.ts"],
+  migrations: ["src/database/migrations/**/*.ts"],
 });
