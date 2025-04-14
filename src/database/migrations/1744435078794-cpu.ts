@@ -5,10 +5,10 @@ export class Processors1744435078794 implements MigrationInterface {
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(
             new Table({
-                name: "processors",
+                name: "cpus",
                 columns: [
                     {
-                        name: "processorId",
+                        name: "cpuId",
                         type: "uuid",
                         isPrimary: true,
                     },
