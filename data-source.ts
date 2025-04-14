@@ -7,7 +7,7 @@ export const AppDataSource = new DataSource({
   port: 5432,
   username: "postgres",
   password: "Caua2003",
-  database: "Hardware",
+  database: "postgres",
   schema: "public",
   entities: ["./src/entities/**/*.ts"],
   migrations: ["src/database/migrations/**/*.ts"],
