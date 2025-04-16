@@ -3,7 +3,7 @@ import { MigrationInterface, QueryRunner, Table } from "typeorm";
 export class Gpu1744435098063 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
-
+        
         await queryRunner.createTable(
             new Table({
                 name: "gpus",
@@ -15,24 +15,24 @@ export class Gpu1744435098063 implements MigrationInterface {
                     }
                     ,
                     {
-                        name: "Product_Name",
+                        name: "product_Name",
                         type: "varchar",
                     },
                     {
-                        name: "Released",
+                        name: "released",
                         type: "varchar",
                     },
                     {
-                        name: "Memory",
+                        name: "memory",
                         type: "varchar",
                         isNullable: false,
                     },
                     {
-                        name: "GPU_clock",
+                        name: "gpu_clock",
                         type: "varchar",
                         isNullable: false,
                     },
-                ]
+                ],
             })
         )
     }

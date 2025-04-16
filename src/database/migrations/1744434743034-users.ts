@@ -12,8 +12,7 @@ export class Users1744434743034 implements MigrationInterface {
                         name: "userId",
                         type: "uuid",
                         isPrimary: true,
-                    }
-                    ,
+                    },
                     {
                         name: "name",
                         type: "varchar",
@@ -28,6 +27,7 @@ export class Users1744434743034 implements MigrationInterface {
                         name: "password",
                         type: "varchar",
                         isNullable: false,
+                        default: "CURRENT_TIMESTAMP",
                     },
                     {
                         name: "created_at",
@@ -37,15 +37,19 @@ export class Users1744434743034 implements MigrationInterface {
                     {
                         name: "updated_at",
                         type: "timestamp",
-                        default: "now()",
+                        default: "CURRENT_TIMESTAMP",
+                    },
+                    {
+                        name: "profileImage",
+                        type: "varchar",
+                        isNullable: true,
                     },
                 ]
             })
 
         )
     }
-
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable("users");
     }
-
 }

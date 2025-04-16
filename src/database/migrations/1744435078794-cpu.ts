@@ -1,8 +1,9 @@
-import { MigrationInterface, QueryRunner , Table} from "typeorm";
+import { MigrationInterface, QueryRunner, Table } from "typeorm";
 
 export class Processors1744435078794 implements MigrationInterface {
 
     public async up(queryRunner: QueryRunner): Promise<void> {
+
         await queryRunner.createTable(
             new Table({
                 name: "cpus",
@@ -13,7 +14,7 @@ export class Processors1744435078794 implements MigrationInterface {
                         isPrimary: true,
                     },
                     {
-                        name: "name",
+                        name: "product_name",
                         type: "varchar",
                         isNullable: false,
                     },
@@ -23,24 +24,25 @@ export class Processors1744435078794 implements MigrationInterface {
                     },
                     {
                         name: "clock",
-                        type: "varchar",
+                        type: "float",
                     },
                     {
                         name: "tdp",
-                        type: "varchar",
+                        type: "float",
                         isNullable: false,
                     },
                     {
                         name: "release_date",
-                        type: "varchar",
+                        type: "date",
                         isNullable: false,
                     },
-                ]
+                ],
             })
         )
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
+        await queryRunner.dropTable("cpus");
     }
 
 }
