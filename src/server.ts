@@ -1,18 +1,17 @@
-import "reflect-metadata"
-import { AppDataSource } from "../data-source";
-import  express from "express";
+import express from 'express';
+import dotenv from 'dotenv';
+import connectDB from './config/db';
+import userRoutes from './routes/userRoutes';
+
+dotenv.config();
 
 const app = express();
+
+connectDB();
+
 app.use(express.json());
 
-AppDataSource.initialize()
-  .then(() => {
-    console.log("Data Source initialized!");
+app.use('/api', userRoutes);
 
-    app.listen(3000, () => {
-      console.log("Servidor rodando em http://localhost:3000");
-    });
-  })
-  .catch((err: unknown) => {
-    console.error("Erro ao inicializar o Data Source:", err);
-  });
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
