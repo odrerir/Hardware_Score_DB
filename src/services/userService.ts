@@ -1,7 +1,7 @@
 import UserModel, { IUser } from '../models/userModel';
 import { ConflictError } from '../utils/errors/conflictError';
 
-class UserService {
+export default class UserService {
   static async createUser(data: IUser): Promise<IUser> {
     try {
       const user = new UserModel(data);
@@ -23,5 +23,3 @@ class UserService {
     }
   }
 }
-
-export default UserService;

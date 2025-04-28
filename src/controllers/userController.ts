@@ -4,7 +4,7 @@ import { objectIdSchema } from '../utils/users/userDataValidation';
 import { z } from 'zod';
 import { AppError } from '../utils/errors/appError';
 
-class UserController {
+export class UserController {
   static async createUser(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const newUser = await UserService.createUser(req.body);
@@ -24,7 +24,7 @@ class UserController {
       if (!user) {
         return next(new AppError('User not found', 404));
       }
-      
+
       res.status(200).json(user);
     } catch (error: any) {
       console.log(error);
@@ -35,5 +35,3 @@ class UserController {
     }
   }
 }
-
-export default UserController;
