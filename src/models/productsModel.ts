@@ -1,27 +1,29 @@
-import { ProductType } from '../enums/ProductType';
-import { Schema, Document } from 'mongoose';
+import mongoose, { Schema, Document } from 'mongoose';
+import {ProductType} from '../enums/ProductType';
 
-export default interface IProduct extends Document {
-  productId: string;
+export interface IProduct extends Document {
   name: string;
-  core: string;
   clock: string;
-  tdp: string;
-  realeaseDate: Date;
+  releaseDate: Date;
   manufactury: string;
   type: ProductType;
+  core?: string;
+  tdp?: string;
+  memory?: string;
 }
 
-const ProdutSchema: Schema = new Schema<IProduct>(
-  {
-    productId: { type: String, required: true, unique: true },
-    name: { type: String, required: true },
-    core: { type: String, required: true },
-    clock: { type: String, required: true },
-    realeaseDate: { type: Date, required: true },
-    manufactury: { type: String, required: true },
-  },
-  {
-    versionKey: false,
-  }
-);
+const ProductSchema = new Schema<IProduct>({
+  name: { type: String, required: true, unique: true },
+  clock: { type: String, required: true },
+  releaseDate: { type: Date, required: true },
+  manufactury: { type: String, required: true },
+  type: { type: String, enum: Object.values(ProductType), required: true },
+  core: { type: String },
+  tdp: { type: String },
+  memory: { type: String },
+}, {
+  versionKey: false,
+});
+
+const ProductModel = mongoose.model<IProduct>('Product', ProductSchema);
+export default ProductModel;

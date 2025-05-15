@@ -6,6 +6,9 @@ import { UserController } from '../controllers/userController';
 const router = express.Router();
 
 router.post('/users', validateRequestBody(createUserSchema), UserController.createUser);
-router.get('/user/:userId', UserController.getUserById);
+router.get('/users', UserController.getAllUsers);
+router.get('/users/:userId', UserController.getUserById);
+router.put('/users/:userId', UserController.updateUser);
+router.delete('/users/:userId', UserController.deleteUser);
 
 export default router;

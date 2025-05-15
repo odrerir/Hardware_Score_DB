@@ -15,11 +15,21 @@ export default class UserService {
   }
 
   static async getUserById(userId: string): Promise<IUser | null> {
-    try {
-      const user = await UserModel.findById(userId).lean().select('-password');
-      return user;
-    } catch (error: any) {
-      throw new Error('Error fetching user: ' + error.message);
-    }
+    return await UserModel.findById(userId).lean().select('-password');
+  }
+
+  static async getAllUsers(): Promise<IUser[]> {
+    return await UserModel.find().lean().select('-password');
+  }
+
+  static async updateUser(userId: string, data: Partial<IUser>): Promise<IUser | null> {
+    return await UserModel.findByIdAndUpdate(userId, data, {
+      new: true,
+      runValidators: true,
+    }).lean().select('-password');
+  }
+
+  static async deleteUser(userId: string): Promise<IUser | null> {
+    return await UserModel.findByIdAndDelete(userId).lean().select('-password');
   }
 }

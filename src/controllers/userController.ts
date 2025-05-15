@@ -18,18 +18,51 @@ export class UserController {
     const { userId } = req.params;
     try {
       objectIdSchema.parse(userId);
-
       const user = await UserService.getUserById(userId);
-
-      if (!user) {
-        return next(new AppError('User not found', 404));
-      }
-
+      if (!user) return next(new AppError('User not found', 404));
       res.status(200).json(user);
     } catch (error: any) {
-      console.log(error);
       if (error instanceof z.ZodError) {
-        return next(new AppError('Invalid ObjectId format'));
+        return next(new AppError('Invalid ObjectId format', 400));
+      }
+      next(error);
+    }
+  }
+
+  static async getAllUsers(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const users = await UserService.getAllUsers();
+      res.status(200).json(users);
+    } catch (error: any) {
+      next(error);
+    }
+  }
+
+  static async updateUser(req: Request, res: Response, next: NextFunction): Promise<void> {
+    const { userId } = req.params;
+    try {
+      objectIdSchema.parse(userId);
+      const updatedUser = await UserService.updateUser(userId, req.body);
+      if (!updatedUser) return next(new AppError('User not found', 404));
+      res.status(200).json(updatedUser);
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        return next(new AppError('Invalid ObjectId format', 400));
+      }
+      next(error);
+    }
+  }
+
+  static async deleteUser(req: Request, res: Response, next: NextFunction): Promise<void> {
+    const { userId } = req.params;
+    try {
+      objectIdSchema.parse(userId);
+      const deletedUser = await UserService.deleteUser(userId);
+      if (!deletedUser) return next(new AppError('User not found', 404));
+      res.status(204).send(); // sucesso sem conteúdo
+    } catch (error: any) {
+      if (error instanceof z.ZodError) {
+        return next(new AppError('Invalid ObjectId format', 400));
       }
       next(error);
     }

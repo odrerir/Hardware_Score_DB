@@ -1,5 +1,4 @@
-
 export enum ProductType {
-  CPU = 'cpu',
-  GPU = 'gpu',
+  CPU = 'CPU',
+  GPU = 'GPU',
 }
