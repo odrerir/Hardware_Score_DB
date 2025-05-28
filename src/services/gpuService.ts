@@ -18,9 +18,14 @@ export default class GpuService {
   }
 
   static async updateGpu(gpuId: string, data: Partial<IProduct>) {
-    return ProductModel.findByIdAndUpdate(gpuId, data, {
-      new: true,
-      runValidators: true, });
+    return ProductModel.findByIdAndUpdate(
+      gpuId,
+      data,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
   }
 
   static async deleteGpu(gpuId: string) {

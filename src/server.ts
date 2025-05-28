@@ -1,10 +1,13 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import connectDB from './config/db';
+
 import userRoutes from './routes/userRoutes';
 import cpuRoutes from './routes/cpuRoutes';
 import gpuRoutes from './routes/gpuRoutes';
 import productRoutes from './routes/productRoutes';
+import favoriteRoutes from './routes/favoriteRoutes';
+
 import { errorHandler } from './middlewares/errorHandler';
 
 dotenv.config();
@@ -19,6 +22,7 @@ app.use('/', userRoutes);
 app.use('/products', productRoutes);
 app.use('/products/cpu', cpuRoutes);
 app.use('/products/gpu', gpuRoutes);
+app.use('/favorites', favoriteRoutes);
 
 app.use(errorHandler);
 

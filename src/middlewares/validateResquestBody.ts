@@ -9,8 +9,9 @@ export const validateRequestBody = (schema: ZodSchema) => {
     }
 
     const result = schema.safeParse(req.body);
-
+    
     if (!result.success) {
+      console.log('Erro de validação:', result.error.format());
       const rawErrors = result.error.flatten().fieldErrors;
 
       const fieldErrors = Object.entries(rawErrors).reduce(

@@ -18,7 +18,13 @@ export default class CpuService {
   }
 
   static async updateCpu(cpuId: string, data: Partial<IProduct>) {
-    return ProductModel.findByIdAndUpdate(cpuId, data, { new: true });
+    return ProductModel.findByIdAndUpdate(
+      cpuId,
+      data,
+      {
+        new: true
+      }
+    );
   }
 
   static async deleteCpu(cpuId: string) {

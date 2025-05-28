@@ -11,7 +11,10 @@ export default class ProductService {
   }
 
   static async updateProductById(productId: string, data: Partial<IProduct>) {
-    return ProductModel.findByIdAndUpdate(productId, data, { new: true });
+    return ProductModel.findByIdAndUpdate(productId, data, {
+      new: true,
+      runValidators: true,
+    });
   }
 
   static async deleteProductById(productId: string) {
