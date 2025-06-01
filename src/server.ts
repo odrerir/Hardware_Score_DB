@@ -7,6 +7,7 @@ import cpuRoutes from './routes/cpuRoutes';
 import gpuRoutes from './routes/gpuRoutes';
 import productRoutes from './routes/productRoutes';
 import favoriteRoutes from './routes/favoriteRoutes';
+import authRoutes from './routes/authRoutes';
 
 import { errorHandler } from './middlewares/errorHandler';
 
@@ -23,6 +24,7 @@ app.use('/products', productRoutes);
 app.use('/products/cpu', cpuRoutes);
 app.use('/products/gpu', gpuRoutes);
 app.use('/favorites', favoriteRoutes);
+app.use('/auth', authRoutes);
 
 app.use(errorHandler);
 

@@ -1,12 +1,12 @@
-import userModel,{ IUser } from '../../models/userModel';
+import userModel from '../../models/userModel';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const JWT_SECRET = process.env.JWT_SECRET || 'segredo';
+const JWT_SECRET = process.env.JWT_SECRET || 'chave_secreta';
 
 export class AuthService {
   static async login(email: string, password: string) {
-    const user = await IUser.findOne({ email });
+    const user = await userModel.findOne({ email });
     if (!user) throw new Error('Credenciais inválidas');
 
     const passwordMatch = await bcrypt.compare(password, user.password);
@@ -23,7 +23,7 @@ export class AuthService {
 
   static async register(email: string, password: string) {
     const hashedPassword = await bcrypt.hash(password, 10);
-    const user = new User({ email, password: hashedPassword });
+    const user = new userModel({ email, password: hashedPassword });
     await user.save();
     return user;
   }
